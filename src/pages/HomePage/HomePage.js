@@ -15,7 +15,7 @@ function HomePage() {
   // const owner = "expressjs";
   // const repo = "express";
 
-  const token = "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";
+  const token = "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";
 
   const [stats, setStats] = useState([]);
   const [dateStatistics, setDateStatistic] = useState([]);
@@ -31,38 +31,38 @@ function HomePage() {
   const [totalDeletions, setTotalDeletions] = useState(0);
 
   const [openAIResponse, setOpenAIResponse] = useState("");
-  
-  const fetchOpenAIResponse = async () => {
-    try {
-      // Preparing the messages array for the chat API
-      const messages = [
-        {
-          "role": "system",
-          "content": "Analyze the following commit messages and categorize the overall quality as good, average, or bad based on the quality of the messages:"
-        },
-        ...commits.map((item) => ({
-          'role': 'user',
-          'content': item
-        }))
-      ];
-      const response = await axios.post(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          model: "gpt-3.5-turbo-16k",
-          messages: messages
-        },
-        {
-          headers: {
-            Authorization: `Bearer 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`
-          }
-        }
-      );
-      const analysisResult = response.data.choices[0].message.content;
-      setOpenAIResponse(analysisResult);
-    } catch (error) {
-      console.error('Error fetching from OpenAI:', error);
-    }
-  };
+
+  // const fetchOpenAIResponse = async () => {
+  //   try {
+  //     // Preparing the messages array for the chat API
+  //     const messages = [
+  //       {
+  //         "role": "system",
+  //         "content": "Analyze the following commit messages and categorize the overall quality as good, average, or bad based on the quality of the messages:"
+  //       },
+  //       ...commits.map((item) => ({
+  //         'role': 'user',
+  //         'content': item
+  //       }))
+  //     ];
+  //     const response = await axios.post(
+  //       "https://api.openai.com/v1/chat/completions",
+  //       {
+  //         model: "gpt-3.5-turbo-16k",
+  //         messages: messages
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer: 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`
+  //         }
+  //       }
+  //     );
+  //     const analysisResult = response.data.choices[0].message.content;
+  //     setOpenAIResponse(analysisResult);
+  //   } catch (error) {
+  //     console.error('Error fetching from OpenAI:', error);
+  //   }
+  // };
 
   useEffect(() => {
     const fetchCommits = async () => {
@@ -145,7 +145,7 @@ function HomePage() {
               headers: {
                 Authorization: `Bearer ${token}`
               }
-              
+
             });
 
             setTotalDeletions(prevTotal => prevTotal + data.data.stats.deletions);
@@ -190,13 +190,15 @@ function HomePage() {
       }
     };
 
+    console.log(openAIResponse);
+
     fetchCommits();
-    fetchOpenAIResponse();
+    // fetchOpenAIResponse();
   }, []);
 
-  useEffect (() => {
-    fetchOpenAIResponse();
-  }, commits)
+  // useEffect(() => {
+  //   fetchOpenAIResponse();
+  // }, commits)
 
   const findAuthor = (author) => {
     return codeStatistics.filter((item) => {
@@ -266,18 +268,15 @@ function HomePage() {
         <section className="repo__contributors">
           <h3>CONTRIBUTOR COMMITS</h3>
           {
-            stats?.map((stat, index) => ( <ContributorCommits key={index} contributor={stat} stats={findAuthor(stat.author)} totalPullRequests={totalPullRequests} totalMerges={totalMerges}/> ) )
+            stats?.map((stat, index) => (<ContributorCommits key={index} contributor={stat} stats={findAuthor(stat.author)} totalPullRequests={totalPullRequests} totalMerges={totalMerges} />))
           }
         </section>
-        <section>
-        <h1>Code Stats</h1>
-        {/* {
-          commits.map((item) => {
-            return <div>{item}</div>
-          })
-        } */}
-        <p>{openAIResponse}</p>
-      </section>
+        {/* <section>
+          <h3>OPEN AI</h3>
+          {
+            openAIResponse
+          }
+        </section> */}
       </main>
     </>
   );

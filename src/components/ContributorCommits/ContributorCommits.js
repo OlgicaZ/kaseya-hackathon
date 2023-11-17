@@ -13,7 +13,7 @@ function ContributorCommits({ contributor, stats, totalPullRequests, totalMerges
 
     
     useEffect(() => {
-        if (!stats || stats.length === 0 || !contributor || contributor.length === 0) {
+        if (!stats || stats.length === 0 || !contributor || contributor.length === 0 || !totalPullRequests || !totalMerges) {
             // Handle the case when stats is empty
         } 
         setAuthor(contributor?.author);
@@ -33,6 +33,9 @@ function ContributorCommits({ contributor, stats, totalPullRequests, totalMerges
     }, stats[0])
 
     useEffect(() => {
+        setAuthor(contributor?.author);
+        setPullRequests(contributor?.numPullRequests);
+        setMerges(contributor?.numMerges);
         setCommits(pullRequests + merges);
     }, contributor[0])
 
