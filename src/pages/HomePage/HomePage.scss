@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+}
+
+h3 {
+  font-size: 1rem;
+  padding: 2rem 1rem;
+}
+h4 {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: .5rem 1rem;
+  // padding-left: 1rem;
+  // padding-right: 1rem;
+}
+
+.nav-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.nav-bar__bar {
+  width: 100%;
+  padding: 1rem;
+  background-color: #0b233a;
+}
+
+main {
+  box-sizing: border-box;
+}
+
+.repo__contributors {
+  width: 100%;
+  box-sizing: border-box;
+}
+// main {
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+
+//   &__container {
+//     width: 100%;
+//   }
+// }
+
+main {
+  padding: 3rem 5rem;
+}
+
+.repo__info {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+
+  &-container {
+    display: flex;
+  }
+}
+.repo__manager {
+  background-size: cover;
+  background-color: silver;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  margin: 1rem 2rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-text {
+    font-size: 3rem;
+  }
+}
+.repo__manager--name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: justify;
+  position: relative;
+  top: 1.5rem;
+}
+
+.repo__title {
+  color: dimgray;
+  font-size: 1.8rem;
+  text-align: center;
+  // position: absolute;
+  // // top: 9rem;
+  // // left: 45rem;
+}
+
+.nav__bar--input {
+  width: 19rem;
+  height: 2.25rem;
+  border: 1px solid silver;
+  background-color: gainsboro;
+  padding: 0.3rem 2.5rem;
+
+  border-radius: 40px;
+  
+  &:active {
+    border-color: #0b233a;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+.repo__details {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+.repo__detail {
+  box-sizing: border-box;
+  width: 25%;
+  //height: 220px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  padding-bottom: 2rem;
+  &:hover {
+    background-color: whitesmoke;
+  }
+}
+
+.repo__container {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+}
+
+.nav__bar--input {
+  position: absolute;
+  right: 6rem;
+  top: 2rem;
+}
+.search__image {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+  position: absolute;
+  right: 3rem;
+  top: 2.5rem;
+}

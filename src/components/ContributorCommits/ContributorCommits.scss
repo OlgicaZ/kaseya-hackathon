@@ -1,0 +1,60 @@
+.contributor {
+    box-sizing: border-box;
+    width: 98%;
+    //height: 4vw;
+    background-color: white;
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #E5E5E5;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    justify-content: space-between;
+    
+    &:hover {
+      background-color: whitesmoke;
+    }
+    
+    &__container {
+        width: 10%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    &__image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+  }
+
+
+.contributor__container {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    //margin-left: 5rem;
+  }
+  .contributor__commits {
+    color: grey;
+  }
+  .contributor__details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contributor__image {
+    background-size: cover;
+    background-color: silver;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    margin: 0rem 1rem;
+  }
