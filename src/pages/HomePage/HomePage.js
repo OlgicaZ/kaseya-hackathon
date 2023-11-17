@@ -15,11 +15,14 @@ function HomePage() {
   // const owner = "expressjs";
   // const repo = "express";
 
-  const token = "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";
+  const token = "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";
 
   const [stats, setStats] = useState([]);
   const [dateStatistics, setDateStatistic] = useState([]);
   const [codeStatistics, setCodeStatistic] = useState([]);
+
+  const [commits, setCommits] = useState([]);
+  const [evaluateCommits, setEvaluateCommits] = useState([]);
 
   const [totalPullRequests, setTotalPullRequests] = useState(0);
   const [totalMerges, setTotalMerges] = useState(0);
@@ -35,6 +38,7 @@ function HomePage() {
             Authorization: `Bearer ${token}`
           }
         });
+
 
         const newStats = [];
         const dateStats = [];
@@ -54,6 +58,8 @@ function HomePage() {
           const author = item.commit.author.name;
           const commitMessage = item.commit.message;
           const isMerge = commitMessage.includes('Merge pull request');
+
+          // setCommits([...commits, commitMessage]);
 
           // check if the author's stats already exist
           const existingStatsIndex = newStats.findIndex(stat => stat.author === author);
@@ -106,7 +112,6 @@ function HomePage() {
               }
               
             });
-
 
             setTotalDeletions(prevTotal => prevTotal + data.data.stats.deletions);
             setTotalInsertions(prevTotal => prevTotal + data.data.stats.additions);
@@ -220,6 +225,7 @@ function HomePage() {
             stats?.map((stat, index) => ( <ContributorCommits key={index} contributor={stat} stats={findAuthor(stat.author)} totalPullRequests={totalPullRequests} totalMerges={totalMerges}/> ) )
           }
         </section>
+        
       </main>
     </>
   );
