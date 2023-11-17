@@ -15,7 +15,7 @@ function HomePage() {
   // const owner = "expressjs";
   // const repo = "express";
 
-  const token = "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";
+  const token = "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";
 
   const [stats, setStats] = useState([]);
   const [dateStatistics, setDateStatistic] = useState([]);
@@ -29,6 +29,40 @@ function HomePage() {
 
   const [totalInsertions, setTotalInsertions] = useState(0);
   const [totalDeletions, setTotalDeletions] = useState(0);
+
+  const [openAIResponse, setOpenAIResponse] = useState("");
+  
+  const fetchOpenAIResponse = async () => {
+    try {
+      // Preparing the messages array for the chat API
+      const messages = [
+        {
+          "role": "system",
+          "content": "Analyze the following commit messages and categorize the overall quality as good, average, or bad based on the quality of the messages:"
+        },
+        ...commits.map((item) => ({
+          'role': 'user',
+          'content': item
+        }))
+      ];
+      const response = await axios.post(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          model: "gpt-3.5-turbo-16k",
+          messages: messages
+        },
+        {
+          headers: {
+            Authorization: `Bearer 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`
+          }
+        }
+      );
+      const analysisResult = response.data.choices[0].message.content;
+      setOpenAIResponse(analysisResult);
+    } catch (error) {
+      console.error('Error fetching from OpenAI:', error);
+    }
+  };
 
   useEffect(() => {
     const fetchCommits = async () => {
@@ -59,7 +93,7 @@ function HomePage() {
           const commitMessage = item.commit.message;
           const isMerge = commitMessage.includes('Merge pull request');
 
-          // setCommits([...commits, commitMessage]);
+          setCommits(prevCommits => [...prevCommits, commitMessage]);
 
           // check if the author's stats already exist
           const existingStatsIndex = newStats.findIndex(stat => stat.author === author);
@@ -101,6 +135,7 @@ function HomePage() {
         });
         setDateStatistic(dateStats);
 
+        // fetch deletions and additions
         const promises = response.data.map(async (item) => {
           const id = item.sha;
 
@@ -146,13 +181,22 @@ function HomePage() {
 
         setCodeStatistic(codeStats);
 
+        commits.map((commit) => {
+
+        })
+
       } catch (error) {
         console.error('Error fetching commits:', error);
       }
     };
 
     fetchCommits();
-  }, [])
+    fetchOpenAIResponse();
+  }, []);
+
+  useEffect (() => {
+    fetchOpenAIResponse();
+  }, commits)
 
   const findAuthor = (author) => {
     return codeStatistics.filter((item) => {
@@ -225,7 +269,15 @@ function HomePage() {
             stats?.map((stat, index) => ( <ContributorCommits key={index} contributor={stat} stats={findAuthor(stat.author)} totalPullRequests={totalPullRequests} totalMerges={totalMerges}/> ) )
           }
         </section>
-        
+        <section>
+        <h1>Code Stats</h1>
+        {/* {
+          commits.map((item) => {
+            return <div>{item}</div>
+          })
+        } */}
+        <p>{openAIResponse}</p>
+      </section>
       </main>
     </>
   );

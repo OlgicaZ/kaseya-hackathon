@@ -53,7 +53,7 @@ function ContributorCommits({ contributor, stats, totalPullRequests, totalMerges
                 <p className="contributor__text">{pullRequests}</p>
             </div>
             <div className="contributor__container">
-                <h5 className="contributor__label">PULL REQUESTS FREQUENCY</h5>
+                <h5 className="contributor__label">PR FREQUENCY</h5>
                 <p className="contributor__text">{pullRequestsFrequency}</p>
             </div>
             <div className="contributor__container">
@@ -65,10 +65,12 @@ function ContributorCommits({ contributor, stats, totalPullRequests, totalMerges
                 <p className="contributor__text">{mergesFrequency}</p>
             </div>
             <div className="contributor__container">
-                <p className="contributor__text">++ {codeAdditions}</p>
+            <h5 className="contributor__label">CODE ADDITIONS</h5>
+                <p className="contributor__text contributor__text--addition">++ {codeAdditions}</p>
             </div>
             <div className="contributor__container">
-                <p className="contributor__text">{codeDeletions} --</p>
+            <h5 className="contributor__label">CODE DELETIONS</h5>
+                <p className="contributor__text contributor__text--deletions">-- {codeDeletions}</p>
             </div>
             <div className="contributor__status-container">
             </div>

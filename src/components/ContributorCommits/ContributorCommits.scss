@@ -1,3 +1,64 @@
+// .contributor {
+//     box-sizing: border-box;
+//     width: 98%;
+//     //height: 4vw;
+//     background-color: white;
+//     margin: 0.5rem;
+//     padding: 1rem;
+//     border-radius: 10px;
+//     border: 1px solid #E5E5E5;
+//     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+
+//     display: flex;
+//     justify-content: space-between;
+    
+//     &:hover {
+//       background-color: whitesmoke;
+//     }
+    
+//     &__container {
+//         width: 10%;
+//         height: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: space-between;
+//         align-items: flex-start;
+//     }
+
+//     &__image {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//     }
+
+//   }
+
+
+// .contributor__container {
+//     width: 100%;
+//     background-color: white;
+//     display: flex;
+//     align-items: center;
+//     //margin-left: 5rem;
+//   }
+//   .contributor__commits {
+//     color: grey;
+//   }
+//   .contributor__details {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//   }
+  
+//   .contributor__image {
+//     background-size: cover;
+//     background-color: silver;
+//     border-radius: 50%;
+//     width: 3rem;
+//     height: 3rem;
+//     margin: 0rem 1rem;
+//   }
+
 .contributor {
     box-sizing: border-box;
     width: 98%;
@@ -8,32 +69,29 @@
     border-radius: 10px;
     border: 1px solid #E5E5E5;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
-
     display: flex;
-    justify-content: space-between;
-    
+    justify-content: space-evenly;
     &:hover {
-      background-color: whitesmoke;
+      border-color:blue;
     }
-    
     &__container {
-        width: 10%;
+        width: fit-content;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
+        background-color: white;
+    &:active {
+      background-color: whitesmoke;
     }
-
+    }
     &__image {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-
   }
-
-
 .contributor__container {
     width: 100%;
     background-color: white;
@@ -49,12 +107,32 @@
     display: flex;
     flex-direction: column;
   }
-  
   .contributor__image {
     background-size: cover;
-    background-color: silver;
+    background-color: #4169E1;
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
     margin: 0rem 1rem;
+  }
+.contributor__name {
+  color: #000000;
+  font-weight: 700;
+}
+.contributor__label {
+  color: #6E6E6E;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.contributor__text {
+  color: #000000;
+  font-weight: 400;
+}
+  .contributor__text--addition {
+    color: #71C97F;
+    font-weight: 700;
+  }
+  .contributor__text--deletions {
+    color:#FF5151;
+    font-weight: 700;
   }
