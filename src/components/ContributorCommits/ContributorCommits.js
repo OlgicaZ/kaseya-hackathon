@@ -18,20 +18,20 @@ function ContributorCommits({ contributor, stats, totalPullRequests, totalMerges
 
             return
         }
-        setAuthor(contributor.author);
-        setPullRequests(contributor.numPullRequests);
-        setMerges(contributor.numMerges);
-        setCommits(pullRequests + merges);
-        setPullRequestsFrequency((pullRequests) ? (pullRequests / totalPullRequests).toFixed(2) : 0);
-        setMergesFrequency((merges) ? (merges / totalMerges).toFixed(2) : 0);
+        setAuthor(contributor?.author);
+        setPullRequests(contributor?.numPullRequests);
+        setMerges(contributor?.numMerges);
+        contributor && setCommits(pullRequests + merges);
+        contributor && setPullRequestsFrequency((pullRequests) ? (pullRequests / totalPullRequests).toFixed(2) : 0);
+        contributor && setMergesFrequency((merges) ? (merges / totalMerges).toFixed(2) : 0);
         console.log('stats: ', stats)
-        setCodeAdditions(stats[0]?.mergeAdditions + stats[0].pullRequestAdditions);
-        setCodeDeletions(stats[0]?.mergeDeletions + stats[0].pullRequestDeletions);
+        setCodeAdditions(stats[0]?.mergeAdditions + stats[0]?.pullRequestAdditions);
+        setCodeDeletions(stats[0]?.mergeDeletions + stats[0]?.pullRequestDeletions);
     }, [])
 
     useEffect(() => {
-        setCodeAdditions(stats[0]?.mergeAdditions + stats[0].pullRequestAdditions);
-        setCodeDeletions(stats[0]?.mergeDeletions + stats[0].pullRequestDeletions);
+        setCodeAdditions(stats[0]?.mergeAdditions + stats[0]?.pullRequestAdditions);
+        setCodeDeletions(stats[0]?.mergeDeletions + stats[0]?.pullRequestDeletions);
     }, stats[0])
 
     return (

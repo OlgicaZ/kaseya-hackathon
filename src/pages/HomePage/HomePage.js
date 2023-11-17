@@ -15,7 +15,7 @@ function HomePage() {
   // const owner = "expressjs";
   // const repo = "express";
 
-  const token = "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";
+  const token = "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";
 
   const [stats, setStats] = useState([]);
   const [dateStatistics, setDateStatistic] = useState([]);
@@ -99,11 +99,14 @@ function HomePage() {
           const id = item.sha;
 
           try {
+            console.log(`https://api.github.com/repos/${owner}/${repo}/commits/${id}`);
             const data = await axios.get(`https://api.github.com/repos/${owner}/${repo}/commits/${id}`, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
+              
             });
+
 
             setTotalDeletions(prevTotal => prevTotal + data.data.stats.deletions);
             setTotalInsertions(prevTotal => prevTotal + data.data.stats.additions);
@@ -153,7 +156,7 @@ function HomePage() {
     })
   }
 
-  console.log('state: ', stat.author)
+  console.log('state: ', findAuthor(stats[0]?.author))
 
   return (
     <>
@@ -214,7 +217,7 @@ function HomePage() {
         <section className="repo__contributors">
           <h3>CONTRIBUTOR COMMITS</h3>
           {
-            // stats.map((stat, index) => ( <ContributorCommits key={index} contributor={stat} stats={findAuthor(stat.author)} totalPullRequests={totalPullRequests} totalMerges={totalMerges}/> ) )
+            stats?.map((stat, index) => ( <ContributorCommits key={index} contributor={stat} stats={findAuthor(stat.author)} totalPullRequests={totalPullRequests} totalMerges={totalMerges}/> ) )
           }
         </section>
       </main>
